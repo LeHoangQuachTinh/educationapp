@@ -65,16 +65,18 @@ export default function ClassManagement() {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 p-4 pb-24 md:p-6 md:pb-6">
       <PageHeader
         title="Quản lý lớp học"
         subtitle="Quản lý thông tin lớp, học sinh, phụ huynh và sơ đồ chỗ ngồi"
         right={
           <button
             onClick={() => setCreateModalOpen(true)}
-            className="inline-flex items-center gap-2 rounded-2xl bg-sky-600 px-4 py-2 text-sm font-extrabold text-white hover:bg-sky-700"
+            className="inline-flex items-center gap-2 rounded-2xl bg-sky-600 px-3 py-2 text-xs font-extrabold text-white hover:bg-sky-700 md:px-4 md:text-sm"
           >
-            <Plus className="h-4 w-4" /> Thêm lớp mới
+            <Plus className="h-4 w-4" /> 
+            <span className="hidden sm:inline">Thêm lớp mới</span>
+            <span className="sm:hidden">Thêm</span>
           </button>
         }
       />
@@ -84,66 +86,66 @@ export default function ClassManagement() {
           <div className="text-sm font-semibold">Đang tải...</div>
         </div>
       ) : classes.length === 0 ? (
-        <div className="rounded-3xl border border-slate-100 bg-white p-12 text-center shadow-card">
-          <div className="text-6xl">🏫</div>
-          <div className="mt-4 text-lg font-extrabold text-slate-900">Chưa có lớp học</div>
-          <div className="mt-2 text-sm text-slate-600">
+        <div className="rounded-3xl border border-slate-100 bg-white p-8 text-center shadow-card md:p-12">
+          <div className="text-5xl md:text-6xl">🏫</div>
+          <div className="mt-4 text-base font-extrabold text-slate-900 md:text-lg">Chưa có lớp học</div>
+          <div className="mt-2 text-xs text-slate-600 md:text-sm">
             Thêm lớp học đầu tiên để bắt đầu quản lý
           </div>
           <button
             onClick={() => setCreateModalOpen(true)}
-            className="mt-4 inline-flex items-center gap-2 rounded-2xl bg-sky-600 px-6 py-3 text-sm font-extrabold text-white hover:bg-sky-700"
+            className="mt-4 inline-flex items-center gap-2 rounded-2xl bg-sky-600 px-4 py-2 text-xs font-extrabold text-white hover:bg-sky-700 md:px-6 md:py-3 md:text-sm"
           >
-            <Plus className="h-5 w-5" /> Thêm lớp mới
+            <Plus className="h-4 w-4 md:h-5 md:w-5" /> Thêm lớp mới
           </button>
         </div>
       ) : (
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {classes.map((cls) => {
             const colorClass = getColorClasses(cls.color)
             return (
               <div
                 key={cls.id}
-                className="group rounded-3xl border border-slate-100 bg-white p-5 shadow-card transition hover:shadow-lg"
+                className="group rounded-3xl border border-slate-100 bg-white p-4 shadow-card transition hover:shadow-lg md:p-5"
               >
-                <div className="flex items-start justify-between">
+                <div className="flex items-start justify-between gap-2">
                   <div
-                    className={`flex h-14 w-14 items-center justify-center rounded-2xl text-3xl ${colorClass.bg}`}
+                    className={`flex h-12 w-12 items-center justify-center rounded-2xl text-2xl md:h-14 md:w-14 md:text-3xl ${colorClass.bg}`}
                   >
                     {cls.icon}
                   </div>
 
-                  <div className="flex items-center gap-1 opacity-0 transition group-hover:opacity-100">
+                  <div className="flex items-center gap-1 opacity-100 transition sm:opacity-0 sm:group-hover:opacity-100">
                     <button
                       onClick={() => navigate(`/teacher/class/${cls.id}`)}
-                      className="rounded-xl bg-sky-50 p-2 text-sky-600 hover:bg-sky-100"
+                      className="rounded-xl bg-sky-50 p-1.5 text-sky-600 hover:bg-sky-100 md:p-2"
                       title="Xem chi tiết"
                     >
-                      <Eye className="h-4 w-4" />
+                      <Eye className="h-3.5 w-3.5 md:h-4 md:w-4" />
                     </button>
                     <button
                       onClick={() => setEditingClass(cls)}
-                      className="rounded-xl bg-amber-50 p-2 text-amber-600 hover:bg-amber-100"
+                      className="rounded-xl bg-amber-50 p-1.5 text-amber-600 hover:bg-amber-100 md:p-2"
                       title="Chỉnh sửa"
                     >
-                      <Edit2 className="h-4 w-4" />
+                      <Edit2 className="h-3.5 w-3.5 md:h-4 md:w-4" />
                     </button>
                     <button
                       onClick={() => handleDelete(cls.id, cls.name)}
-                      className="rounded-xl bg-rose-50 p-2 text-rose-600 hover:bg-rose-100"
+                      className="rounded-xl bg-rose-50 p-1.5 text-rose-600 hover:bg-rose-100 md:p-2"
                       title="Xóa"
                     >
-                      <Trash2 className="h-4 w-4" />
+                      <Trash2 className="h-3.5 w-3.5 md:h-4 md:w-4" />
                     </button>
                   </div>
                 </div>
 
-                <div className="mt-4">
-                  <div className="text-xl font-extrabold text-slate-900">{cls.name}</div>
-                  <div className="mt-1 text-sm text-slate-600">{cls.description || 'Không có mô tả'}</div>
+                <div className="mt-3 md:mt-4">
+                  <div className="text-lg font-extrabold text-slate-900 md:text-xl">{cls.name}</div>
+                  <div className="mt-1 text-xs text-slate-600 line-clamp-2 md:text-sm">{cls.description || 'Không có mô tả'}</div>
                 </div>
 
-                <div className="mt-4 flex flex-wrap items-center gap-2">
+                <div className="mt-3 flex flex-wrap items-center gap-1.5 md:mt-4 md:gap-2">
                   <Badge tone="slate">
                     <MapPin className="mr-1 inline h-3 w-3" />
                     {cls.room || 'Chưa có phòng'}
@@ -154,24 +156,26 @@ export default function ClassManagement() {
                   </Badge>
                 </div>
 
-                <div className="mt-4 grid grid-cols-2 gap-2">
+                <div className="mt-3 grid grid-cols-2 gap-2 md:mt-4">
                   <button
                     onClick={() => navigate(`/teacher/class/${cls.id}`)}
-                    className="rounded-2xl bg-sky-50 px-4 py-2 text-xs font-semibold text-sky-700 hover:bg-sky-100"
+                    className="rounded-2xl bg-sky-50 px-2 py-2 text-[10px] font-semibold text-sky-700 hover:bg-sky-100 md:px-4 md:text-xs"
                   >
-                    <Eye className="mr-1 inline h-3.5 w-3.5" />
-                    Chi tiết
+                    <Eye className="mr-1 inline h-3 w-3 md:h-3.5 md:w-3.5" />
+                    <span className="hidden sm:inline">Chi tiết</span>
+                    <span className="sm:hidden">Xem</span>
                   </button>
                   <button
                     onClick={() => navigate(`/teacher/class/${cls.id}/seating`)}
-                    className="rounded-2xl bg-emerald-50 px-4 py-2 text-xs font-semibold text-emerald-700 hover:bg-emerald-100"
+                    className="rounded-2xl bg-emerald-50 px-2 py-2 text-[10px] font-semibold text-emerald-700 hover:bg-emerald-100 md:px-4 md:text-xs"
                   >
-                    <MapPin className="mr-1 inline h-3.5 w-3.5" />
-                    Chỗ ngồi
+                    <MapPin className="mr-1 inline h-3 w-3 md:h-3.5 md:w-3.5" />
+                    <span className="hidden sm:inline">Chỗ ngồi</span>
+                    <span className="sm:hidden">Chỗ</span>
                   </button>
                 </div>
 
-                <div className="mt-3 border-t border-slate-100 pt-3 text-xs text-slate-500">
+                <div className="mt-2 border-t border-slate-100 pt-2 text-[10px] text-slate-500 md:mt-3 md:pt-3 md:text-xs">
                   Năm học: {cls.schoolYear} • Khối {cls.grade}
                 </div>
               </div>

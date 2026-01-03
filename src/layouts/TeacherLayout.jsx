@@ -72,8 +72,7 @@ function TeacherSidebar() {
       <nav className="mt-4 space-y-2">
         <SideItem to="/teacher/dashboard" icon={TrendingUp} label="Tổng quan" />
         <SideItem to="/teacher/class-management" icon={School} label="Quản lý lớp" />
-        <SideItem to="/teacher/class-map" icon={LayoutGrid} label="Sơ đồ lớp" />
-        <SideItem to="/teacher/seating" icon={LayoutGrid} label="Chỗ ngồi" />
+        <SideItem to="/teacher/seating" icon={LayoutGrid} label="Sơ đồ lớp" />
         <SideItem to="/teacher/logbook" icon={BookOpen} label="Sổ đầu bài" />
         <SideItem to="/teacher/attendance" icon={UserCheck2} label="Điểm danh" />
         <SideItem to="/teacher/messages" icon={MessageCircle} label="Tin nhắn" />

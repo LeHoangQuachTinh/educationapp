@@ -21,8 +21,7 @@ import StudentGrades from './pages/student/Grades'
 
 import TeacherLayout from './layouts/TeacherLayout'
 import TeacherDashboard from './pages/teacher/Dashboard'
-import ClassMap from './pages/teacher/ClassMap'
-import ClassSeatingGrid from './pages/teacher/ClassSeatingGrid'
+import ClassSeating from './pages/teacher/ClassSeating'
 import Logbook from './pages/teacher/Logbook'
 import TeacherSettings from './pages/teacher/Settings'
 import Attendance from './pages/teacher/Attendance'
@@ -108,8 +107,7 @@ export default function App() {
             <Route element={<RequireAuth role="TEACHER" onUnauthorized={() => <Navigate to="/student/dashboard" replace />} />}>
               <Route element={<TeacherLayout />}>
                 <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
-                <Route path="/teacher/class-map" element={<ClassMap />} />
-                <Route path="/teacher/seating" element={<ClassSeatingGrid />} />
+                <Route path="/teacher/seating" element={<ClassSeating />} />
                 <Route path="/teacher/logbook" element={<Logbook />} />
                 <Route path="/teacher/attendance" element={<Attendance />} />
                 <Route path="/teacher/messages" element={<Messages />} />

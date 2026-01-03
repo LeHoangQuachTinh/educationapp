@@ -139,58 +139,59 @@ export default function ClassDetail() {
   ]
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 p-4 pb-24 md:p-6 md:pb-6">
       <PageHeader
         title={classData.name}
         subtitle={`${classData.description || 'Lớp học'} • Phòng ${classData.room || 'N/A'}`}
         right={
           <button
             onClick={() => navigate('/teacher/class-management')}
-            className="inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-4 py-2 text-sm font-extrabold text-white"
+            className="inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-3 py-2 text-xs font-extrabold text-white md:px-4 md:text-sm"
           >
-            <ArrowLeft className="h-4 w-4" /> Quay lại
+            <ArrowLeft className="h-4 w-4" /> 
+            <span className="hidden sm:inline">Quay lại</span>
           </button>
         }
       />
 
       {/* Stats Cards */}
-      <div className="grid gap-4 md:grid-cols-4">
-        <div className="rounded-3xl border border-slate-100 bg-white p-5 shadow-card">
-          <div className="text-xs font-semibold text-slate-600">Sĩ số</div>
-          <div className="mt-2 text-3xl font-extrabold text-slate-900">
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+        <div className="rounded-3xl border border-slate-100 bg-white p-4 shadow-card md:p-5">
+          <div className="text-[10px] font-semibold text-slate-600 md:text-xs">Sĩ số</div>
+          <div className="mt-2 text-2xl font-extrabold text-slate-900 md:text-3xl">
             {stats?.total || 0}/{classData.capacity}
           </div>
-          <div className="mt-2 text-xs text-slate-500">
+          <div className="mt-2 text-[10px] text-slate-500 md:text-xs">
             Nam: {stats?.male || 0} • Nữ: {stats?.female || 0}
           </div>
         </div>
 
-        <div className="rounded-3xl border border-slate-100 bg-white p-5 shadow-card">
-          <div className="text-xs font-semibold text-slate-600">Giỏi</div>
-          <div className="mt-2 text-3xl font-extrabold text-emerald-600">
+        <div className="rounded-3xl border border-slate-100 bg-white p-4 shadow-card md:p-5">
+          <div className="text-[10px] font-semibold text-slate-600 md:text-xs">Giỏi</div>
+          <div className="mt-2 text-2xl font-extrabold text-emerald-600 md:text-3xl">
             {stats?.performance.excellent || 0}
           </div>
-          <div className="mt-2 text-xs text-slate-500">
+          <div className="mt-2 text-[10px] text-slate-500 md:text-xs">
             Khá: {stats?.performance.good || 0}
           </div>
         </div>
 
-        <div className="rounded-3xl border border-slate-100 bg-white p-5 shadow-card">
-          <div className="text-xs font-semibold text-slate-600">Hạnh kiểm tốt</div>
-          <div className="mt-2 text-3xl font-extrabold text-sky-600">
+        <div className="rounded-3xl border border-slate-100 bg-white p-4 shadow-card md:p-5">
+          <div className="text-[10px] font-semibold text-slate-600 md:text-xs">Hạnh kiểm tốt</div>
+          <div className="mt-2 text-2xl font-extrabold text-sky-600 md:text-3xl">
             {stats?.conduct.good + stats?.conduct.excellent || 0}
           </div>
-          <div className="mt-2 text-xs text-slate-500">
+          <div className="mt-2 text-[10px] text-slate-500 md:text-xs">
             Xuất sắc: {stats?.conduct.excellent || 0}
           </div>
         </div>
 
-        <div className="rounded-3xl border border-slate-100 bg-white p-5 shadow-card">
-          <div className="text-xs font-semibold text-slate-600">Điểm TB</div>
-          <div className="mt-2 text-3xl font-extrabold text-amber-600">
+        <div className="rounded-3xl border border-slate-100 bg-white p-4 shadow-card md:p-5">
+          <div className="text-[10px] font-semibold text-slate-600 md:text-xs">Điểm TB</div>
+          <div className="mt-2 text-2xl font-extrabold text-amber-600 md:text-3xl">
             {stats?.averagePoints || 0}
           </div>
-          <div className="mt-2 text-xs text-slate-500">Điểm thưởng trung bình</div>
+          <div className="mt-2 text-[10px] text-slate-500 md:text-xs">Điểm thưởng trung bình</div>
         </div>
       </div>
 
@@ -279,59 +280,64 @@ export default function ClassDetail() {
 function StudentsTab({ students, classId, onAdd, onEdit, onDelete, onImport, onExportExcel, onExportPDF }) {
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="text-sm font-extrabold text-slate-900">
           Danh sách học sinh ({students.length})
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <button
             onClick={onImport}
-            className="inline-flex items-center gap-2 rounded-2xl bg-amber-600 px-4 py-2 text-sm font-extrabold text-white hover:bg-amber-700"
+            className="inline-flex items-center gap-1 rounded-2xl bg-amber-600 px-2 py-1.5 text-xs font-extrabold text-white hover:bg-amber-700 md:gap-2 md:px-4 md:py-2 md:text-sm"
           >
-            <Upload className="h-4 w-4" /> Import Excel
+            <Upload className="h-3.5 w-3.5 md:h-4 md:w-4" /> 
+            <span className="hidden sm:inline">Import Excel</span>
+            <span className="sm:hidden">Import</span>
           </button>
           <button
             onClick={onExportExcel}
-            className="inline-flex items-center gap-2 rounded-2xl bg-sky-600 px-4 py-2 text-sm font-extrabold text-white hover:bg-sky-700"
+            className="inline-flex items-center gap-1 rounded-2xl bg-sky-600 px-2 py-1.5 text-xs font-extrabold text-white hover:bg-sky-700 md:gap-2 md:px-4 md:py-2 md:text-sm"
           >
-            <FileSpreadsheet className="h-4 w-4" /> Excel
+            <FileSpreadsheet className="h-3.5 w-3.5 md:h-4 md:w-4" /> 
+            <span className="hidden sm:inline">Excel</span>
           </button>
           <button
             onClick={onExportPDF}
-            className="inline-flex items-center gap-2 rounded-2xl bg-rose-600 px-4 py-2 text-sm font-extrabold text-white hover:bg-rose-700"
+            className="inline-flex items-center gap-1 rounded-2xl bg-rose-600 px-2 py-1.5 text-xs font-extrabold text-white hover:bg-rose-700 md:gap-2 md:px-4 md:py-2 md:text-sm"
           >
-            <FileText className="h-4 w-4" /> PDF
+            <FileText className="h-3.5 w-3.5 md:h-4 md:w-4" /> 
+            <span className="hidden sm:inline">PDF</span>
           </button>
           <button
             onClick={onAdd}
-            className="inline-flex items-center gap-2 rounded-2xl bg-emerald-600 px-4 py-2 text-sm font-extrabold text-white hover:bg-emerald-700"
+            className="inline-flex items-center gap-1 rounded-2xl bg-emerald-600 px-2 py-1.5 text-xs font-extrabold text-white hover:bg-emerald-700 md:gap-2 md:px-4 md:py-2 md:text-sm"
           >
-            <UserPlus className="h-4 w-4" /> Thêm
+            <UserPlus className="h-3.5 w-3.5 md:h-4 md:w-4" /> 
+            <span className="hidden sm:inline">Thêm</span>
           </button>
         </div>
       </div>
 
       {students.length === 0 ? (
-        <div className="rounded-2xl bg-slate-50 p-8 text-center">
-          <div className="text-4xl">👥</div>
-          <div className="mt-3 text-sm font-semibold text-slate-900">Chưa có học sinh</div>
-          <div className="mt-1 text-sm text-slate-600">Thêm học sinh đầu tiên vào lớp</div>
+        <div className="rounded-2xl bg-slate-50 p-6 text-center md:p-8">
+          <div className="text-3xl md:text-4xl">👥</div>
+          <div className="mt-3 text-xs font-semibold text-slate-900 md:text-sm">Chưa có học sinh</div>
+          <div className="mt-1 text-xs text-slate-600 md:text-sm">Thêm học sinh đầu tiên vào lớp</div>
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="space-y-2 md:space-y-3">
           {students.map((student) => (
             <div
               key={student.id}
-              className="flex items-start justify-between gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-4"
+              className="flex items-start justify-between gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-3 md:gap-4 md:p-4"
             >
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-100 text-xl font-extrabold text-sky-700">
+              <div className="flex items-start gap-2 md:gap-4">
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl bg-sky-100 text-lg font-extrabold text-sky-700 md:h-12 md:w-12 md:text-xl">
                   {student.fullName.charAt(0)}
                 </div>
 
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <div className="text-sm font-extrabold text-slate-900">{student.fullName}</div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-1 md:gap-2">
+                    <div className="text-xs font-extrabold text-slate-900 md:text-sm">{student.fullName}</div>
                     <Badge tone={student.gender === 'male' ? 'sky' : 'rose'}>
                       {student.gender === 'male' ? 'Nam' : 'Nữ'}
                     </Badge>
@@ -340,18 +346,18 @@ function StudentsTab({ students, classId, onAdd, onEdit, onDelete, onImport, onE
                     )}
                   </div>
 
-                  <div className="mt-1 text-xs text-slate-600">
+                  <div className="mt-1 text-[10px] text-slate-600 md:text-xs">
                     Mã: {student.studentCode} • Sinh: {student.dateOfBirth}
                   </div>
 
                   {student.parents && student.parents.length > 0 && (
-                    <div className="mt-2 flex items-center gap-1 text-xs text-slate-500">
+                    <div className="mt-1 flex items-center gap-1 text-[10px] text-slate-500 md:mt-2 md:text-xs">
                       <Phone className="h-3 w-3" />
                       {student.parents[0].phone}
                     </div>
                   )}
 
-                  <div className="mt-2 flex flex-wrap gap-2">
+                  <div className="mt-1 flex flex-wrap gap-1 md:mt-2 md:gap-2">
                     <Badge tone="amber">💰 {student.currentPoints} điểm</Badge>
                     {student.seatNumber > 0 && (
                       <Badge tone="slate">
@@ -363,18 +369,18 @@ function StudentsTab({ students, classId, onAdd, onEdit, onDelete, onImport, onE
                 </div>
               </div>
 
-              <div className="flex items-center gap-1">
+              <div className="flex flex-shrink-0 items-center gap-1">
                 <button
                   onClick={() => onEdit(student)}
-                  className="rounded-xl bg-amber-50 p-2 text-amber-600 hover:bg-amber-100"
+                  className="rounded-xl bg-amber-50 p-1.5 text-amber-600 hover:bg-amber-100 md:p-2"
                 >
-                  <Edit2 className="h-4 w-4" />
+                  <Edit2 className="h-3.5 w-3.5 md:h-4 md:w-4" />
                 </button>
                 <button
                   onClick={() => onDelete(student.id, student.fullName)}
-                  className="rounded-xl bg-rose-50 p-2 text-rose-600 hover:bg-rose-100"
+                  className="rounded-xl bg-rose-50 p-1.5 text-rose-600 hover:bg-rose-100 md:p-2"
                 >
-                  <Trash2 className="h-4 w-4" />
+                  <Trash2 className="h-3.5 w-3.5 md:h-4 md:w-4" />
                 </button>
               </div>
             </div>
@@ -388,62 +394,66 @@ function StudentsTab({ students, classId, onAdd, onEdit, onDelete, onImport, onE
 function ParentsTab({ parents, onAdd, onDelete, onExportExcel }) {
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="text-sm font-extrabold text-slate-900">
           Danh sách phụ huynh ({parents.length})
         </div>
         <div className="flex items-center gap-2">
           <button
             onClick={onExportExcel}
-            className="inline-flex items-center gap-2 rounded-2xl bg-sky-600 px-4 py-2 text-sm font-extrabold text-white hover:bg-sky-700"
+            className="inline-flex items-center gap-1 rounded-2xl bg-sky-600 px-2 py-1.5 text-xs font-extrabold text-white hover:bg-sky-700 md:gap-2 md:px-4 md:py-2 md:text-sm"
           >
-            <FileSpreadsheet className="h-4 w-4" /> Export Excel
+            <FileSpreadsheet className="h-3.5 w-3.5 md:h-4 md:w-4" /> 
+            <span className="hidden sm:inline">Export Excel</span>
+            <span className="sm:hidden">Excel</span>
           </button>
           <button
             onClick={onAdd}
-            className="inline-flex items-center gap-2 rounded-2xl bg-emerald-600 px-4 py-2 text-sm font-extrabold text-white hover:bg-emerald-700"
+            className="inline-flex items-center gap-1 rounded-2xl bg-emerald-600 px-2 py-1.5 text-xs font-extrabold text-white hover:bg-emerald-700 md:gap-2 md:px-4 md:py-2 md:text-sm"
           >
-            <UserPlus className="h-4 w-4" /> Thêm phụ huynh
+            <UserPlus className="h-3.5 w-3.5 md:h-4 md:w-4" /> 
+            <span className="hidden sm:inline">Thêm phụ huynh</span>
+            <span className="sm:hidden">Thêm</span>
           </button>
         </div>
       </div>
 
       {parents.length === 0 ? (
-        <div className="rounded-2xl bg-slate-50 p-8 text-center">
-          <div className="text-4xl">👨‍👩‍👧</div>
-          <div className="mt-3 text-sm font-semibold text-slate-900">Chưa có phụ huynh</div>
-          <div className="mt-1 text-sm text-slate-600">Thêm thông tin phụ huynh</div>
+        <div className="rounded-2xl bg-slate-50 p-6 text-center md:p-8">
+          <div className="text-3xl md:text-4xl">👨‍👩‍👧</div>
+          <div className="mt-3 text-xs font-semibold text-slate-900 md:text-sm">Chưa có phụ huynh</div>
+          <div className="mt-1 text-xs text-slate-600 md:text-sm">Thêm thông tin phụ huynh</div>
         </div>
       ) : (
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="grid gap-2 sm:grid-cols-2 md:gap-3">
           {parents.map((parent) => (
             <div
               key={parent.id}
-              className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
+              className="rounded-2xl border border-slate-200 bg-slate-50 p-3 md:p-4"
             >
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <div className="text-sm font-extrabold text-slate-900">{parent.fullName}</div>
+              <div className="flex items-start justify-between gap-2">
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-1 md:gap-2">
+                    <div className="text-xs font-extrabold text-slate-900 md:text-sm">{parent.fullName}</div>
                     <Badge tone="sky">{parent.relationship}</Badge>
                     {parent.isMainContact && <Badge tone="emerald">Liên hệ chính</Badge>}
                   </div>
 
-                  <div className="mt-2 space-y-1 text-xs text-slate-600">
+                  <div className="mt-1 space-y-1 text-[10px] text-slate-600 md:mt-2 md:text-xs">
                     <div className="flex items-center gap-2">
                       <Phone className="h-3 w-3" />
-                      {parent.phone}
+                      <span className="truncate">{parent.phone}</span>
                     </div>
                     {parent.email && (
                       <div className="flex items-center gap-2">
                         <Mail className="h-3 w-3" />
-                        {parent.email}
+                        <span className="truncate">{parent.email}</span>
                       </div>
                     )}
                     {parent.occupation && (
                       <div className="flex items-center gap-2">
                         <Users className="h-3 w-3" />
-                        {parent.occupation}
+                        <span className="truncate">{parent.occupation}</span>
                       </div>
                     )}
                   </div>
@@ -451,9 +461,9 @@ function ParentsTab({ parents, onAdd, onDelete, onExportExcel }) {
 
                 <button
                   onClick={() => onDelete(parent.id, parent.fullName)}
-                  className="rounded-xl bg-rose-50 p-2 text-rose-600 hover:bg-rose-100"
+                  className="flex-shrink-0 rounded-xl bg-rose-50 p-1.5 text-rose-600 hover:bg-rose-100 md:p-2"
                 >
-                  <Trash2 className="h-4 w-4" />
+                  <Trash2 className="h-3.5 w-3.5 md:h-4 md:w-4" />
                 </button>
               </div>
             </div>
@@ -468,14 +478,16 @@ function StatsTab({ stats, onExportPDF }) {
   if (!stats) return null
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="space-y-4 md:space-y-6">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="text-sm font-extrabold text-slate-900">Thống kê lớp học</div>
         <button
           onClick={onExportPDF}
-          className="inline-flex items-center gap-2 rounded-2xl bg-rose-600 px-4 py-2 text-sm font-extrabold text-white hover:bg-rose-700"
+          className="inline-flex items-center gap-1 self-start rounded-2xl bg-rose-600 px-2 py-1.5 text-xs font-extrabold text-white hover:bg-rose-700 md:gap-2 md:px-4 md:py-2 md:text-sm"
         >
-          <FileText className="h-4 w-4" /> Export PDF
+          <FileText className="h-3.5 w-3.5 md:h-4 md:w-4" /> 
+          <span className="hidden sm:inline">Export PDF</span>
+          <span className="sm:hidden">PDF</span>
         </button>
       </div>
 
