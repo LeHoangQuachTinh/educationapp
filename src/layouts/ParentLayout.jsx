@@ -32,12 +32,27 @@ export default function ParentLayout() {
             <div className="text-sm font-extrabold text-slate-900">HappyClass</div>
             <div className="text-xs text-slate-600">Phụ huynh · {user?.name || 'Tài khoản'}</div>
           </div>
-          <button
-            onClick={logout}
-            className="rounded-xl bg-slate-900 px-3 py-2 text-xs font-semibold text-white"
-          >
-            Đăng xuất
-          </button>
+          <div className="flex items-center gap-2">
+            <NavLink
+              to="/parent/notifications"
+              className={({ isActive }) =>
+                'relative inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 ' +
+                (isActive ? 'ring-4 ring-sky-100 border-sky-300 text-sky-700' : '')
+              }
+              aria-label="Thông báo"
+            >
+              <Bell className="h-5 w-5" />
+              {/* badge demo */}
+              <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-rose-500" />
+            </NavLink>
+
+            <button
+              onClick={logout}
+              className="rounded-xl bg-slate-900 px-3 py-2 text-xs font-semibold text-white"
+            >
+              Đăng xuất
+            </button>
+          </div>
         </div>
       </div>
 
@@ -53,7 +68,6 @@ export default function ParentLayout() {
           <Tab to="/parent/chat" icon={MessageCircle} label="Tin nhắn" />
           <Tab to="/parent/report" icon={BarChart3} label="Báo cáo" />
           <Tab to="/parent/timetable" icon={CalendarDays} label="Lịch" />
-          <Tab to="/parent/notifications" icon={Bell} label="Thông báo" />
           <Tab to="/parent/grades" icon={BarChart3} label="Điểm" />
         </div>
       </div>
